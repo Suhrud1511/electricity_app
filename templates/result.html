@@ -1,0 +1,82 @@
+<!-- templates/result.html -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Electricity Bill</title>
+  <!-- Include Tailwind CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+
+<body class="bg-gray-200 p-4">
+  <div class="max-w-md mx-auto bg-white rounded-lg p-6">
+    <h1 class="text-2xl font-semibold mb-4">Electricity Bill</h1>
+    <div class="mb-4">
+      <h2 class="text-lg font-semibold mb-2">Summary:</h2>
+      <div class="grid grid-cols-2 gap-x-4">
+        <p>Total Square Footage:</p>
+        <p>{{ square_footage }} sqft</p>
+        <p>Total Units Consumed:</p>
+        <p>{{ total_units }} units</p>
+        <p>Total Bill:</p>
+        {% if total_units > 200 %}
+        {% set thresh = 7 %}
+        {% else %}
+        {% set thresh = 4 %}
+        {% endif %}
+        <p>₹{{ bill }}</p>
+      </div>
+    </div>
+    <hr class="my-4 border-t-2 border-gray-300"> <!-- Line between summary and breakdown -->
+    <div>
+      <h2 class="text-lg font-semibold mb-2">Breakdown:</h2>
+      <table class="min-w-full divide-y divide-gray-200">
+        <thead class="bg-gray-50">
+          <tr>
+            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Appliance</th>
+            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Consumption
+              (units)</th>
+            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Cost (₹)</th>
+          </tr>
+        </thead>
+        <tbody class="bg-white divide-y divide-gray-200">
+          <tr>
+            <td class="px-6 py-4 whitespace-nowrap">Bulb</td>
+            <td class="px-6 py-4 whitespace-nowrap">{{ bulb_consumption }}</td>
+            <td class="px-6 py-4 whitespace-nowrap">₹{{ bulb_cost*thresh }}</td>
+          </tr>
+          <tr>
+            <td class="px-6 py-4 whitespace-nowrap">Light</td>
+            <td class="px-6 py-4 whitespace-nowrap">{{ light_consumption }}</td>
+            <td class="px-6 py-4 whitespace-nowrap">₹{{ light_cost*thresh }}</td>
+          </tr>
+          <tr>
+            <td class="px-6 py-4 whitespace-nowrap">Refrigerator</td>
+            <td class="px-6 py-4 whitespace-nowrap">{{ refrigerator_consumption }}</td>
+            <td class="px-6 py-4 whitespace-nowrap">₹{{ refrigerator_cost*thresh }}</td>
+          </tr>
+          <tr>
+            <td class="px-6 py-4 whitespace-nowrap">Oven</td>
+            <td class="px-6 py-4 whitespace-nowrap">{{ oven_consumption }}</td>
+            <td class="px-6 py-4 whitespace-nowrap">₹{{ oven_cost*thresh }}</td>
+          </tr>
+          <tr>
+            <td class="px-6 py-4 whitespace-nowrap">Geyser</td>
+            <td class="px-6 py-4 whitespace-nowrap">{{ geyser_consumption }}</td>
+            <td class="px-6 py-4 whitespace-nowrap">₹{{ geyser_cost*thresh }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <hr class="my-4 border-t-2 border-gray-300"> <!-- Line between breakdown and grand total -->
+    <!-- Grand Total -->
+    <div class="text-lg font-semibold mb-2">Grand Total: ₹{{ bill }}</div>
+    <div class="mt-4">
+      <a href="/" class="text-blue-500 hover:underline">Back to Calculator</a>
+    </div>
+  </div>
+</body>
+
+</html>

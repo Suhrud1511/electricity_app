@@ -1,0 +1,31 @@
+<!-- templates/index.html -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Electricity Bill Calculator</title>
+  <!-- Include Tailwind CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+
+<body class="bg-gray-200">
+  <div class="container mx-auto p-4">
+    <h1 class="text-3xl font-bold mb-4">Electricity Bill Calculator</h1>
+    <form action="/calculate" method="POST">
+      <div class="mb-4">
+        <label for="square_footage" class="block text-gray-700 font-bold">Square Footage:</label>
+        <input type="number" id="square_footage" name="square_footage" class="form-input mt-1 block w-full" required>
+      </div>
+      <div class="mb-4">
+        <label for="num_bulbs" class="block text-gray-700 font-bold">Number of Bulbs:</label>
+        <input type="number" id="num_bulbs" name="num_bulbs" class="form-input mt-1 block w-full">
+      </div>
+      <!-- Add similar fields for other appliances -->
+      <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded">Calculate Bill</button>
+    </form>
+  </div>
+</body>
+
+</html>
