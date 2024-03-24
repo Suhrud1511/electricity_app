@@ -1,4 +1,3 @@
-# app.py
 from flask import Flask, render_template, request
 
 app = Flask(__name__)
@@ -33,6 +32,10 @@ def calculate_bill(total_units):
     else:
         total_bill = total_units * TARIFF_RATE_ABOVE_THRESHOLD
     return total_bill
+
+@app.route('/')
+def calculator():
+    return render_template('index.html')
 
 @app.route('/calculate', methods=['POST'])
 def calculate():
